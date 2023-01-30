@@ -1,0 +1,14 @@
+<launch>
+	<!-- values passed by command line input -->
+	<arg name="tcp_host" default="0.0.0.0"/>
+	<arg name="tcp_port" />
+	<!-- set these parameters on Parameter Server -->
+	<param name="tcp_host" value="$(arg tcp_host)"/>
+	<param name="tcp_port" type="int" value="$(arg tcp_port)"/>
+	<!-- Start 2 nodes: serial_stream_publisher,
+	and serial_stream_server -->
+	<node name="serial_stream_publisher" pkg="arduino_communication_server"
+	type="serial_stream_publisher" />
+	<node name="serial_stream_server" pkg="arduino_communication_server"
+	type="serial_stream_server.py" output="screen" />
+</launch>
